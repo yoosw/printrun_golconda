@@ -1429,12 +1429,12 @@ class PronterWindow(MainWindow, pronsole.pronsole):
         wx.CallAfter(self.toolbarsizer.Layout)
 
     def on_end_display(self):
-        if 0:
-            self.sethotendgui(0)
-            self.setbedgui(0)
-        else:
-            self.sethotendgui_temp1(0)
-            self.sethotendgui_temp2(0)
+        # if 0:
+        #     self.sethotendgui(0)
+        #     self.setbedgui(0)
+        # else:
+        #     self.sethotendgui_temp1(0)
+        #     self.sethotendgui_temp2(0)
         # wx.CallAfter(self.hottgauge.SetTarget, 0)
         # wx.CallAfter(self.hottgauge2.SetTarget, 0)
         # wx.CallAfter(self.text_print_nozzle_temp1_set.SetLabel, u"0\u00B0C")

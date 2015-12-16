@@ -105,7 +105,7 @@ def Print_Control(root, parentpanel):
     if os.name == "nt":
         root.speed_combo = wx.ComboBox(dis_panel, -1, value="100%", pos=(132, 215), size=(80, -1), choices=root.select_speed_val, style=wx.CB_READONLY)
     else:
-        root.speed_combo = wx.ComboBox(dis_panel, -1, value="100%", pos=(135, 213), size=(80, -1), choices=root.select_speed_val, style=wx.CB_READONLY)
+        root.speed_combo = wx.ComboBox(dis_panel, -1, value="100%", pos=(135, 220), size=(80, -1), choices=root.select_speed_val, style=wx.CB_READONLY)
 
     if os.name == "nt":
         root.speed_combo.SetFont(root.font_14)
@@ -115,7 +115,7 @@ def Print_Control(root, parentpanel):
     if os.name == "nt":
         root.pan_combo = wx.ComboBox(dis_panel, -1, value="100%", pos=(456, 215), size=(80, -1), choices=root.select_pan_val, style=wx.CB_READONLY)
     else:
-        root.pan_combo = wx.ComboBox(dis_panel, -1, value="100%", pos=(460, 213), size=(80, -1), choices=root.select_pan_val, style=wx.CB_READONLY)
+        root.pan_combo = wx.ComboBox(dis_panel, -1, value="100%", pos=(460, 220), size=(80, -1), choices=root.select_pan_val, style=wx.CB_READONLY)
 
     if os.name == "nt":
         root.pan_combo.SetFont(root.font_14)
@@ -154,13 +154,13 @@ def Print_Control(root, parentpanel):
         root.btn_bmp_print_list = wx.BitmapButton(dis_panel, -1, bmp_print_list, (20, 20), style=wx.NO_BORDER)
         root.btn_bmp_print_list.Bind(wx.EVT_BUTTON, root.loadfile)
 
-        root.btn_bmp_print_start = wx.BitmapButton(dis_panel, -1, root.bmp_print_start, (45, 333), style=wx.NO_BORDER)
+        root.btn_bmp_print_start = wx.BitmapButton(dis_panel, -1, root.bmp_print_start, (45, 325), style=wx.NO_BORDER)
         root.btn_bmp_print_start.Bind(wx.EVT_BUTTON, root.printfile)
 
-        root.btn_bmp_print_pause = wx.BitmapButton(dis_panel, -1, root.bmp_print_pause, (169, 333), style=wx.NO_BORDER)
+        root.btn_bmp_print_pause = wx.BitmapButton(dis_panel, -1, root.bmp_print_pause, (169, 325), style=wx.NO_BORDER)
         root.btn_bmp_print_pause.Bind(wx.EVT_BUTTON, root.pause)
 
-        root.btn_bmp_print_stop = wx.BitmapButton(dis_panel, -1, root.bmp_print_stop, (295, 333), style=wx.NO_BORDER)
+        root.btn_bmp_print_stop = wx.BitmapButton(dis_panel, -1, root.bmp_print_stop, (295, 325), style=wx.NO_BORDER)
         root.btn_bmp_print_stop.Bind(wx.EVT_BUTTON, root.on_stop)
 
         # root.btn_bmp_print_filament_ch = wx.BitmapButton(dis_panel, -1, root.bmp_print_filament, (374, 316), style=wx.NO_BORDER)

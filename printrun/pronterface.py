@@ -2247,7 +2247,7 @@ class PronterWindow(MainWindow, pronsole.pronsole):
             isreport = report_type != REPORT_NONE
             if report_type & REPORT_POS:
                 self.update_pos()
-            # swyoo 2015.12.16 mo use temp
+            # swyoo 2015.12.16 no use temp
             # elif report_type & REPORT_TEMP:
             #     wx.CallAfter(self.tempdisp.SetLabel, self.tempreadings.strip().replace("ok ", ""))
             #     self.update_tempdisplay()

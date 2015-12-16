@@ -1,4 +1,5 @@
 This is one of modify Printrun modify
+Name is Golconda. no extruder heat
 Printrun consists of printcore, pronsole and pronterface, and a small collection of helpful scripts.
 
   * printcore.py is a library that makes writing reprap hosts easy

@@ -494,15 +494,15 @@ class PronterWindow(MainWindow, pronsole.pronsole):
                     # swyoo 2015.09.15 change temp display
                     if 0:
                         self.sethotendgui(f)
-                        wx.CallAfter(self.text_print_nozzle_temp1_set.SetLabel, str(temp) + u"\u00B0C")
+                        # wx.CallAfter(self.text_print_nozzle_temp1_set.SetLabel, str(temp) + u"\u00B0C")
                     else:
                         if nozzle == "nozzle_one":
                             self.sethotendgui_temp1(f)
-                            wx.CallAfter(self.text_print_nozzle_temp1_set.SetLabel, str(temp) + u"\u00B0C")
+                            # wx.CallAfter(self.text_print_nozzle_temp1_set.SetLabel, str(temp) + u"\u00B0C")
 
                         elif nozzle == "nozzle_two":
                             self.sethotendgui_temp2(f)
-                            wx.CallAfter(self.text_print_nozzle_temp2_set.SetLabel, str(temp) + u"\u00B0C")
+                            # wx.CallAfter(self.text_print_nozzle_temp2_set.SetLabel, str(temp) + u"\u00B0C")
 
                 else:
                     self.logError(_("Printer is not online."))
@@ -1435,10 +1435,10 @@ class PronterWindow(MainWindow, pronsole.pronsole):
         else:
             self.sethotendgui_temp1(0)
             self.sethotendgui_temp2(0)
-        wx.CallAfter(self.hottgauge.SetTarget, 0)
-        wx.CallAfter(self.hottgauge2.SetTarget, 0)
-        wx.CallAfter(self.text_print_nozzle_temp1_set.SetLabel, u"0\u00B0C")
-        wx.CallAfter(self.text_print_nozzle_temp2_set.SetLabel, u"0\u00B0C")
+        # wx.CallAfter(self.hottgauge.SetTarget, 0)
+        # wx.CallAfter(self.hottgauge2.SetTarget, 0)
+        # wx.CallAfter(self.text_print_nozzle_temp1_set.SetLabel, u"0\u00B0C")
+        # wx.CallAfter(self.text_print_nozzle_temp2_set.SetLabel, u"0\u00B0C")
         self.On_Print_state("ready")
         self.pan_combo.SetSelection(0)
         self.reboot_machine = True
@@ -2029,12 +2029,12 @@ class PronterWindow(MainWindow, pronsole.pronsole):
                 # swyoo 2015.09.16 always diplay temp
                 # if self.display_gauges: wx.CallAfter(self.hottgauge.SetTarget, temp)
 
-                if nozzle_choice == "T1":
-                    wx.CallAfter(self.hottgauge2.SetTarget, temp)
-                    wx.CallAfter(self.text_print_nozzle_temp2_set.SetLabel, str(temp) + u"\u00B0C")
-                else:
-                    wx.CallAfter(self.hottgauge.SetTarget, temp)
-                    wx.CallAfter(self.text_print_nozzle_temp1_set.SetLabel, str(temp) + u"\u00B0C")
+                # if nozzle_choice == "T1":
+                #     wx.CallAfter(self.hottgauge2.SetTarget, temp)
+                #     wx.CallAfter(self.text_print_nozzle_temp2_set.SetLabel, str(temp) + u"\u00B0C")
+                # else:
+                #     wx.CallAfter(self.hottgauge.SetTarget, temp)
+                #     wx.CallAfter(self.text_print_nozzle_temp1_set.SetLabel, str(temp) + u"\u00B0C")
 
                 if self.display_graph: wx.CallAfter(self.graph.SetExtruder0TargetTemperature, temp)
         elif gline.command in ["M140", "M190"]:
@@ -2247,9 +2247,10 @@ class PronterWindow(MainWindow, pronsole.pronsole):
             isreport = report_type != REPORT_NONE
             if report_type & REPORT_POS:
                 self.update_pos()
-            elif report_type & REPORT_TEMP:
-                wx.CallAfter(self.tempdisp.SetLabel, self.tempreadings.strip().replace("ok ", ""))
-                self.update_tempdisplay()
+            # swyoo 2015.12.16 mo use temp
+            # elif report_type & REPORT_TEMP:
+            #     wx.CallAfter(self.tempdisp.SetLabel, self.tempreadings.strip().replace("ok ", ""))
+            #     self.update_tempdisplay()
             if not self.p.loud and (l not in ["ok", "wait"] and (not isreport or report_type & REPORT_MANUAL)):
                 wx.CallAfter(self.addtexttolog, l + "\n")
         for listener in self.recvlisteners:
@@ -2924,11 +2925,11 @@ class PronterWindow(MainWindow, pronsole.pronsole):
             self.print_next_state = "pause"
             wx.CallAfter(self.btn_bmp_print_pause.SetBitmapLabel, self.bmp_print_pause)
             if self.filament_ch:
-                wx.CallAfter(self.btn_bmp_print_filament_ch.SetBitmapLabel, self.bmp_print_filament)
+                # wx.CallAfter(self.btn_bmp_print_filament_ch.SetBitmapLabel, self.bmp_print_filament)
                 self.filament_ch = False
         elif state == "filament_ch":
             self.print_next_state = "filament_done"
-            wx.CallAfter(self.btn_bmp_print_filament_ch.SetBitmapLabel, self.bmp_print_filament_ch)
+            # wx.CallAfter(self.btn_bmp_print_filament_ch.SetBitmapLabel, self.bmp_print_filament_ch)
             wx.CallAfter(self.btn_bmp_print_pause.SetBitmapLabel, self.bmp_print_resume)
             self.filament_ch = True
         else:
@@ -3080,11 +3081,11 @@ class PronterWindow(MainWindow, pronsole.pronsole):
         elif event == "motor_auto_on":
             if self.motor_by_sensor:
                 self.motor_by_sensor = False
-                wx.CallAfter(self.btn_bmp_motor_auto.SetBitmapLabel, self.bmp_motor_off)
+                # wx.CallAfter(self.btn_bmp_motor_auto.SetBitmapLabel, self.bmp_motor_off)
                 dis_text = "Bobbin Motor Off"
             else:
                 self.motor_by_sensor = True
-                wx.CallAfter(self.btn_bmp_motor_auto.SetBitmapLabel, self.bmp_motor_auto)
+                # wx.CallAfter(self.btn_bmp_motor_auto.SetBitmapLabel, self.bmp_motor_auto)
                 dis_text = "Bobbin Motor On"
 
         self.display_text_bottom(dis_text)
@@ -3100,7 +3101,7 @@ class PronterWindow(MainWindow, pronsole.pronsole):
             return
         wx.CallAfter(self.text_printing_guide.SetLabel, string)
         wx.CallAfter(self.text_motor_guide.SetLabel, string)
-        wx.CallAfter(self.text_setting_guide.SetLabel, string)
+        # wx.CallAfter(self.text_setting_guide.SetLabel, string)
 
 class PronterApp(wx.App):
 

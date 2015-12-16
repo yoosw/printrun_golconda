@@ -18,27 +18,6 @@ def Setting_Help(root, parentpanel):
     # ------------------imsi
     toolbar_sizer = wx.BoxSizer
     self = toolbar_sizer(wx.HORIZONTAL)
-
-    # if os.name == "nt":
-    # motor_on_btn = make_autosize_button(dis_panel, _("led on"), lambda e: root.gpio_control("led_on"), _("led on start"))
-    # self.Add(motor_on_btn, 0, wx.TOP | wx.LEFT, 10)
-    #
-    # motor_off_btn = make_autosize_button(dis_panel, _("led off"), lambda e: root.gpio_control("led_off"), _("led off start"))
-    # self.Add(motor_off_btn, 0, wx.TOP | wx.LEFT, 10)
-    #
-    # motor_on_btn = make_autosize_button(dis_panel, _("motor forward"), lambda e: root.gpio_control("motor_forward"), _("bobbin motor on"))
-    # self.Add(motor_on_btn, 0, wx.TOP | wx.LEFT, 10)
-    #
-    # motor_on_btn = make_autosize_button(dis_panel, _("motor reverse"), lambda e: root.gpio_control("motor_reverse"), _("bobbin motor on"))
-    # self.Add(motor_on_btn, 0, wx.TOP | wx.LEFT, 10)
-    #
-    # motor_off_btn = make_autosize_button(dis_panel, _("motor auto on"), lambda e: root.gpio_control("motor_auto_on"), _("bobbin motor off"))
-    # self.Add(motor_off_btn, 0, wx.TOP | wx.LEFT, 10)
-    #
-    # motor_off_btn = make_autosize_button(dis_panel, _("motor auto off"), lambda e: root.gpio_control("motor_auto_off"), _("bobbin motor start by sensor"))
-    # self.Add(motor_off_btn, 0, wx.TOP | wx.LEFT, 10)
-    # ------------------imsi
-
     # =============
     bmp_help_admin = wx.Bitmap(imagefile("flexor/help/help_admin.png"), wx.BITMAP_TYPE_PNG)
     bmp_help_initialize = wx.Bitmap(imagefile("flexor/help/help_initialize.png"), wx.BITMAP_TYPE_PNG)

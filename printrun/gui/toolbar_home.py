@@ -45,7 +45,7 @@ def HomeToolbar(root, parentpanel=None, use_wrapsizer=False):
     root.bmp_home_connected = wx.Bitmap(imagefile("flexor/home/main_connected.png"), wx.BITMAP_TYPE_ANY)
     bmp_home_filelist = wx.Bitmap(imagefile("flexor/home/main_filelist.png"), wx.BITMAP_TYPE_ANY)
     bmp_home_control = wx.Bitmap(imagefile("flexor/home/main_control.png"), wx.BITMAP_TYPE_ANY)
-    bmp_home_setting = wx.Bitmap(imagefile("flexor/home/main_setting.png"), wx.BITMAP_TYPE_ANY)
+    bmp_home_setting = wx.Bitmap(imagefile("flexor/home/main_help.png"), wx.BITMAP_TYPE_ANY)
 
     btn_bmp_home_filelist = wx.BitmapButton(dis_panel, -1, bmp_home_filelist, (52, 128), style=wx.NO_BORDER)
     btn_bmp_home_filelist.Bind(wx.EVT_BUTTON, root.loadfile)

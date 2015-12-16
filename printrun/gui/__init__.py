@@ -190,7 +190,7 @@ class MainWindow(wx.Frame):
         self.page3panel = self.newPanel(self.notebook)
         self.page4panel = self.newPanel(self.notebook)
         self.page5panel = self.newPanel(self.notebook)
-        self.page6panel = self.newPanel(self.notebook)
+        # self.page6panel = self.newPanel(self.notebook)
 
         # swyoo 2015.08.29 set color, image
         self.page0panel.SetBackgroundColour('#FFFFFF')
@@ -198,7 +198,7 @@ class MainWindow(wx.Frame):
         self.page2panel.SetBackgroundColour('#FFFFFF')
         self.page3panel.SetBackgroundColour('#FFFFFF')
         self.page4panel.SetBackgroundColour('#FFFFFF')
-        self.page5panel.SetBackgroundColour('#FFFFFF')
+        # self.page5panel.SetBackgroundColour('#FFFFFF')
 
         # swyoo 2015.09.02 set background image
         image_file = "flexor/printing/printing_bg.png"
@@ -234,109 +234,68 @@ class MainWindow(wx.Frame):
         #========================================================== tap2 : Motor
         Motor_Control(self, self.page2panel)
         #========================================================== tap3 : Setting
-        Setting_Control(self,  self.page3panel)
+        # Setting_Control(self,  self.page3panel)
         #========================================================== tap4 : help
-        self.helptoolbarsizer = Setting_Help(self,  self.page4panel)
+        self.helptoolbarsizer = Setting_Help(self,  self.page3panel)
         self.page4panel.SetSizer(self.helptoolbarsizer)
         #========================================================== tap5 : Log
-        # swyoo 2015.09.01 prevent 3d view for loading time in raspberry
-        if 0:
-            self.mainsizer = wx.BoxSizer(wx.HORIZONTAL)
-            self.splitterwindow = wx.SplitterWindow(self.page5panel, style = wx.SP_3D)
-            page5sizer1 = wx.BoxSizer(wx.HORIZONTAL)
-            page5panel1 = self.newPanel(self.splitterwindow)
+        # swyoo 2015.09.01 should pass VizPane for etc
+        vizpane = VizPane(self, self.page4panel)
 
-            page5sizer2 = wx.BoxSizer(wx.HORIZONTAL)
-            page5panel2 = self.newPanel(self.splitterwindow)
-            vizpane = VizPane(self, page5panel1)
-            page5sizer1.Add(vizpane, 1, wx.EXPAND)
-            page5sizer2.Add(LogPane(self, page5panel2), 1, wx.EXPAND)
-            page5panel1.SetSizer(page5sizer1)
-            page5panel2.SetSizer(page5sizer2)
-            self.splitterwindow.SetMinimumPaneSize(1)
-            self.splitterwindow.SetSashGravity(0.5)
-            self.splitterwindow.SplitVertically(page5panel1, page5panel2,
-                                                self.settings.last_sash_position)
-
-            self.mainsizer.Add(self.splitterwindow, 1, wx.EXPAND)
-            self.page5panel.SetSizer(self.mainsizer)
-        else:
-             # swyoo 2015.09.01 should pass VizPane for etc
-            vizpane = VizPane(self, self.page5panel)
-
-            self.mainsizer_4 = wx.BoxSizer(wx.HORIZONTAL)
-            self.mainsizer_4.Add(LogPane(self, self.page5panel), 1, wx.EXPAND)
-            self.page5panel.SetSizer(self.mainsizer_4)
+        self.mainsizer_4 = wx.BoxSizer(wx.HORIZONTAL)
+        self.mainsizer_4.Add(LogPane(self, self.page4panel), 1, wx.EXPAND)
+        self.page4panel.SetSizer(self.mainsizer_4)
         #========================================================== tap6 : original
         if self.settings.uimode in (_("Tabbed"), _("Tabbed with platers")):
-            createTabbedGui_sub(self, self.page6panel)
+            createTabbedGui_sub(self, self.page5panel)
         else:
             createGui_sub(self, self.settings.uimode == _("Compact"),
-                          self.settings.controlsmode == "Mini", self.page6panel)
+                          self.settings.controlsmode == "Mini", self.page5panel)
         #========================================================== tap End
         self.notesizer.Add(self.notebook, 1, wx.EXPAND)
-        if 0:
-            self.notebook.AddPage(self.page0panel, _("Home"))
-            self.notebook.AddPage(self.page1panel, _("Print"))
-            self.notebook.AddPage(self.page2panel, _("Motor"))
-            self.notebook.AddPage(self.page3panel, _("Setting"))
-            self.notebook.AddPage(self.page3panel, _("Help"))
-            self.notebook.AddPage(self.page5panel, _("Log.."))
-            self.notebook.AddPage(self.page6panel, _("Original"))
-        else:
-            self.notebook.AddPage(self.page0panel, _(""))
-            self.notebook.AddPage(self.page1panel, _(""))
-            self.notebook.AddPage(self.page2panel, _(""))
-            self.notebook.AddPage(self.page3panel, _(""))
-            self.notebook.AddPage(self.page4panel, _(""))
-            if os.name == "nt":
-                self.notebook.AddPage(self.page5panel, _(""))
-                self.notebook.AddPage(self.page6panel, _(""))
+        self.notebook.AddPage(self.page0panel, _(""))
+        self.notebook.AddPage(self.page1panel, _(""))
+        self.notebook.AddPage(self.page2panel, _(""))
+        self.notebook.AddPage(self.page3panel, _(""))
+        if os.name == "nt":
+            self.notebook.AddPage(self.page4panel, _("log"))
+            self.notebook.AddPage(self.page5panel, _("Original"))
 
         # list containing notebook images:
         # .ico seem to be more OS portable
-        il = wx.ImageList(107, 79) # the (16, 16) is the size in pixels of the images
+        il = wx.ImageList(105, 106) # the (16, 16) is the size in pixels of the images
 
         self.img0 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_main.png"), wx.BITMAP_TYPE_PNG))
         self.img1 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_printing.png"), wx.BITMAP_TYPE_PNG))
         self.img2 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_control.png"), wx.BITMAP_TYPE_PNG))
-        self.img3 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_setting.png"), wx.BITMAP_TYPE_PNG))
-        self.img4 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_help.png"), wx.BITMAP_TYPE_PNG))
-        self.img5 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_log.png"), wx.BITMAP_TYPE_PNG))
-        self.img6 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_original.png"), wx.BITMAP_TYPE_PNG))
+        # self.img3 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_setting.png"), wx.BITMAP_TYPE_PNG))
+        self.img3 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_help.png"), wx.BITMAP_TYPE_PNG))
+        # self.img4 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_log.png"), wx.BITMAP_TYPE_PNG))
+        # self.img5 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_original.png"), wx.BITMAP_TYPE_PNG))
         self.img0_ch = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_main_ch.png"), wx.BITMAP_TYPE_PNG))
         self.img1_ch = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_printing_ch.png"), wx.BITMAP_TYPE_PNG))
         self.img2_ch = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_control_ch.png"), wx.BITMAP_TYPE_PNG))
-        self.img3_ch = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_setting_ch.png"), wx.BITMAP_TYPE_PNG))
-        self.img4_ch = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_help_ch.png"), wx.BITMAP_TYPE_PNG))
-        self.img5_ch = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_log_ch.png"), wx.BITMAP_TYPE_PNG))
-        self.img6_ch = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_original_ch.png"), wx.BITMAP_TYPE_PNG))
+        # self.img3_ch = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_setting_ch.png"), wx.BITMAP_TYPE_PNG))
+        self.img3_ch = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_help_ch.png"), wx.BITMAP_TYPE_PNG))
+        # self.img4_ch = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_log_ch.png"), wx.BITMAP_TYPE_PNG))
+        # self.img5_ch = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_original_ch.png"), wx.BITMAP_TYPE_PNG))
 
         self.image_list = {
             0: self.img0,
             1: self.img1,
             2: self.img2,
             3: self.img3,
-            4: self.img4,
-            5: self.img5,
-            6: self.img6,
-            7: self.img0_ch,
-            8: self.img1_ch,
-            9: self.img2_ch,
-            10: self.img3_ch,
-            11: self.img4_ch,
-            12: self.img5_ch,
-            13: self.img6_ch
+            4: self.img0_ch,
+            5: self.img1_ch,
+            6: self.img2_ch,
+            7: self.img3_ch,
         }
 
         self.tap_list = {
             0: "home",
             1: "print",
             2: "motor",
-            3: "setting",
-            4: "help",
-            5: "log",
-            6: "original",
+            3: "help",
         }
 
         # swyoo 2015.09.01 add to tap the image
@@ -350,10 +309,9 @@ class MainWindow(wx.Frame):
         self.notebook.SetPageImage(1, self.img1)
         self.notebook.SetPageImage(2, self.img2)
         self.notebook.SetPageImage(3, self.img3)
-        self.notebook.SetPageImage(4, self.img4)
-        if os.name == "nt":
-            self.notebook.SetPageImage(5, self.img5)
-            self.notebook.SetPageImage(6, self.img6)
+        # if os.name == "nt":
+        #     self.notebook.SetPageImage(4, self.img4)
+        #     self.notebook.SetPageImage(5, self.img5)
 
         # if this isn't called the notebook background color doesn't work right when switching
         #  themes in XP.
@@ -374,11 +332,11 @@ class MainWindow(wx.Frame):
         old = event.GetOldSelection()
         new = event.GetSelection()
 
-        if old < 7:
+        if old < 4:
             old_tap = self.image_list[old]
             self.notebook.SetPageImage(old, old_tap)
-        if new < 7:
-            new_tap = self.image_list[new + 7]
+        if new < 4:
+            new_tap = self.image_list[new + 4]
             self.notebook.SetPageImage(new, new_tap)
 
             self.tap_menu = self.tap_list[new]

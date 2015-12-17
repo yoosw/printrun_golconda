@@ -263,7 +263,7 @@ class MainWindow(wx.Frame):
 
         # list containing notebook images:
         # .ico seem to be more OS portable
-        il = wx.ImageList(105, 106) # the (16, 16) is the size in pixels of the images
+        il = wx.ImageList(102, 103) # the (16, 16) is the size in pixels of the images
 
         self.img0 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_main.png"), wx.BITMAP_TYPE_PNG))
         self.img1 = il.Add(wx.Bitmap(imagefile("flexor/tap/tap_printing.png"), wx.BITMAP_TYPE_PNG))

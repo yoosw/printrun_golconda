@@ -1497,6 +1497,7 @@ class PronterWindow(MainWindow, pronsole.pronsole):
     def on_startprint(self):
         if os.name is not "nt":
             self.gpio_on.led_on()
+        wx.CallAfter(self.btn_bmp_print_led.SetBitmapLabel, self.bmp_print_led_ch)
 
         wx.CallAfter(self.pausebtn.SetLabel, _("Pause"))
         wx.CallAfter(self.pausebtn.Enable)
@@ -1976,6 +1977,8 @@ class PronterWindow(MainWindow, pronsole.pronsole):
         if self.p.queueindex == 0:
             if os.name is not "nt":
                 self.gpio_on.led_off()
+            wx.CallAfter(self.btn_bmp_print_led.SetBitmapLabel, self.bmp_print_led)
+
             self.p.runSmallScript(self.endScript)
             wx.CallAfter(self.pausebtn.Disable)
             wx.CallAfter(self.printbtn.SetLabel, _("Print"))
